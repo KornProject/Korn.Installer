@@ -1,13 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35506.116 d17.12
+VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Korn.Installer", "Korn.Installer\Korn.Installer.csproj", "{BB73BF8E-0709-428F-8A5A-DCB20DE6A4BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Korn", "Korn", "{960306CB-B59C-485F-8A49-0C288E319F55}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Korn.Utils.WinForms", "..\Korn.Utils.WinForms\Korn.Utils.WinForms\Korn.Utils.WinForms.csproj", "{77009A4E-9D92-4A70-A922-8B38575319C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Korn.Utils.GithubExplorer", "..\Korn.Utils.GithubExplorer\Korn.Utils.GithubExplorer\Korn.Utils.GithubExplorer.csproj", "{D8BD874F-B9AB-423C-9020-D2E3F34816DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Korn.Utils.System", "..\Korn.Utils.System\Korn.Utils.System\Korn.Utils.System.csproj", "{E4ADB67F-EED8-4575-91F6-28D526A7FFB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Korn.Logger", "..\Korn.Logger\Korn.Logger\Korn.Logger.csproj", "{1D5D76CA-9CC0-419F-9E79-C7058F69CCCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,11 +39,38 @@ Global
 		{77009A4E-9D92-4A70-A922-8B38575319C1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{77009A4E-9D92-4A70-A922-8B38575319C1}.Release|x64.ActiveCfg = Release|Any CPU
 		{77009A4E-9D92-4A70-A922-8B38575319C1}.Release|x64.Build.0 = Release|Any CPU
+		{D8BD874F-B9AB-423C-9020-D2E3F34816DB}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{D8BD874F-B9AB-423C-9020-D2E3F34816DB}.Debug|Any CPU.Build.0 = Debug|x64
+		{D8BD874F-B9AB-423C-9020-D2E3F34816DB}.Debug|x64.ActiveCfg = Debug|x64
+		{D8BD874F-B9AB-423C-9020-D2E3F34816DB}.Debug|x64.Build.0 = Debug|x64
+		{D8BD874F-B9AB-423C-9020-D2E3F34816DB}.Release|Any CPU.ActiveCfg = Release|x64
+		{D8BD874F-B9AB-423C-9020-D2E3F34816DB}.Release|Any CPU.Build.0 = Release|x64
+		{D8BD874F-B9AB-423C-9020-D2E3F34816DB}.Release|x64.ActiveCfg = Release|x64
+		{D8BD874F-B9AB-423C-9020-D2E3F34816DB}.Release|x64.Build.0 = Release|x64
+		{E4ADB67F-EED8-4575-91F6-28D526A7FFB2}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{E4ADB67F-EED8-4575-91F6-28D526A7FFB2}.Debug|Any CPU.Build.0 = Debug|x64
+		{E4ADB67F-EED8-4575-91F6-28D526A7FFB2}.Debug|x64.ActiveCfg = Debug|x64
+		{E4ADB67F-EED8-4575-91F6-28D526A7FFB2}.Debug|x64.Build.0 = Debug|x64
+		{E4ADB67F-EED8-4575-91F6-28D526A7FFB2}.Release|Any CPU.ActiveCfg = Release|x64
+		{E4ADB67F-EED8-4575-91F6-28D526A7FFB2}.Release|Any CPU.Build.0 = Release|x64
+		{E4ADB67F-EED8-4575-91F6-28D526A7FFB2}.Release|x64.ActiveCfg = Release|x64
+		{E4ADB67F-EED8-4575-91F6-28D526A7FFB2}.Release|x64.Build.0 = Release|x64
+		{1D5D76CA-9CC0-419F-9E79-C7058F69CCCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D5D76CA-9CC0-419F-9E79-C7058F69CCCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D5D76CA-9CC0-419F-9E79-C7058F69CCCA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1D5D76CA-9CC0-419F-9E79-C7058F69CCCA}.Debug|x64.Build.0 = Debug|Any CPU
+		{1D5D76CA-9CC0-419F-9E79-C7058F69CCCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D5D76CA-9CC0-419F-9E79-C7058F69CCCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D5D76CA-9CC0-419F-9E79-C7058F69CCCA}.Release|x64.ActiveCfg = Release|Any CPU
+		{1D5D76CA-9CC0-419F-9E79-C7058F69CCCA}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{77009A4E-9D92-4A70-A922-8B38575319C1} = {960306CB-B59C-485F-8A49-0C288E319F55}
+		{D8BD874F-B9AB-423C-9020-D2E3F34816DB} = {960306CB-B59C-485F-8A49-0C288E319F55}
+		{E4ADB67F-EED8-4575-91F6-28D526A7FFB2} = {960306CB-B59C-485F-8A49-0C288E319F55}
+		{1D5D76CA-9CC0-419F-9E79-C7058F69CCCA} = {960306CB-B59C-485F-8A49-0C288E319F55}
 	EndGlobalSection
 EndGlobal

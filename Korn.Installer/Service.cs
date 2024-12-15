@@ -1,4 +1,6 @@
-﻿static class ServiceService
+﻿using Korn.Utils;
+
+static class Service
 {
     public const string KORN_PATH_VAR_NAME = "KORN_PATH";
 

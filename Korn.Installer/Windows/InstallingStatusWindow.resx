@@ -117,18 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DescriptionLabel.Text" xml:space="preserve">
-    <value>  Korn — a hack for VisualStudio that allows insecure
-access to VisualStudio and its components, such as, 
-for example, Roslyn.
-  Korn is designed to be as user-friendly as possible
-and is not capable of breaking any VisualStudio
-components.
-
-  There is no need to restart anything after
-installation. Korn will start working immediately 
-after installation.
-  If you wish to uninstall Korn, run the installer
-and select the uninstall option.</value>
-  </data>
 </root>

@@ -12,7 +12,7 @@ internal class Program
 
     Form SelectWindow()
     {
-        if (ServiceService.IsInstalled)
+        if (Service.IsInstalled)
             return new ChooseActionWindow();
         else return new InstallWindow();
     }
