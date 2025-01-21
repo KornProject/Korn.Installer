@@ -1,5 +1,6 @@
 ﻿using Korn.Installer.Windows;
 using Korn.Utils.WinForms;
+using System.Diagnostics;
 
 public partial class InstallWindow : RelocableForm
 {
@@ -18,7 +19,6 @@ public partial class InstallWindow : RelocableForm
 
         ControlUtils.SetRoundCorners(
             [
-                BrowseKornPathButton,
                 InstallButton
             ],
             InterfaceConfiguration.ButtonRoundCornerSize
@@ -40,6 +40,7 @@ public partial class InstallWindow : RelocableForm
 
     void GuideLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => IExplorerService.OpenUrl("https://github.com/YoticKorn/Guides");
 
+    /* At the moment, the path selection is blocked */
     string lastBrowsedKornPath = @"C:\Program Files\Korn";
     void BrowseKornPathButton_Click(object sender, EventArgs e)
     {
@@ -64,18 +65,24 @@ public partial class InstallWindow : RelocableForm
         }
 
         installed = true;
-        BrowseKornPathButton.Enabled = false;
 
         InstallButton.Text = "Close";
         InstallButton.Enabled = false;
 
-        using var installingStatusWindow = new InstallingStatusWindow() 
+        using var installingStatusWindow = new StatusWindow
         {
-            InstallationPath = lastBrowsedKornPath
+            InstallationPath = lastBrowsedKornPath,
+            Action = installer => installer.Install()
         };
+        installingStatusWindow.Title = "Installing…";
         installingStatusWindow.ShowDialog();
         InstallButton.Enabled = true;
 
         SuccessfullyInstalledLabel.Visible = true;
+    }
+
+    private void DescriptionLabel_Click(object sender, EventArgs e)
+    {
+
     }
 }

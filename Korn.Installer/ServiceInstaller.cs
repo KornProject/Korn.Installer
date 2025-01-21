@@ -1,6 +1,7 @@
 ﻿using Korn.Utils.GithubExplorer;
 using Korn.Utils;
 using System.Diagnostics;
+using Korn.Shared;
 
 class ServiceInstaller(string path)
 {
@@ -45,16 +46,7 @@ class ServiceInstaller(string path)
 
         void CreateDirectories()
         {
-            string[] directories = 
-            [
-                "Service", 
-                "Service\\bin",
-                "AutorunService",
-                "AutorunService\\bin",
-                "Data",
-                "Data\\Service"
-            ];
-            foreach (var directory in directories)
+            foreach (var directory in KornPaths.AllRequeredDirectories)
                 Directory.CreateDirectory(Path.Combine(path, directory));
             Phase("Created directories");
         }
@@ -66,8 +58,6 @@ class ServiceInstaller(string path)
             var latestRelease = releases[0];
             Phase("Received latest github release");
 
-            var binaryDirectory = Path.Combine(path, "Service\\bin");
-
             var entries = latestRelease.Assets;
             for (var entryIndex = 0; entryIndex < entries.Length; entryIndex++)
             {
@@ -75,7 +65,7 @@ class ServiceInstaller(string path)
                 var bytes = githubClient.DownloadAsset(entry);
                 Phase($"Downloaded {entryIndex + 1}/{entries.Length} entry: {entry.Name}");
 
-                var entryPath = Path.Combine(binaryDirectory, entry.Name);
+                var entryPath = Path.Combine(KornPaths.Service.BinDirectory, entry.Name);
                 File.WriteAllBytes(entryPath, bytes);
             }
         }
@@ -87,8 +77,6 @@ class ServiceInstaller(string path)
             var latestRelease = releases[0];
             Phase("Received latest github release");
 
-            var binaryDirectory = Path.Combine(path, "AutorunService\\bin");
-
             var entries = latestRelease.Assets;
             for (var entryIndex = 0; entryIndex < entries.Length; entryIndex++)
             {
@@ -96,14 +84,14 @@ class ServiceInstaller(string path)
                 var bytes = githubClient.DownloadAsset(entry);
                 Phase($"Downloaded {entryIndex + 1}/{entries.Length} entry: {entry.Name}");
 
-                var entryPath = Path.Combine(binaryDirectory, entry.Name);
+                var entryPath = Path.Combine(KornPaths.AutorunService.BinDirectory, entry.Name);
                 File.WriteAllBytes(entryPath, bytes);
             }
         }
 
         void InstallAutorunService()
         {
-            var serviceExe = Path.Combine(path, "AutorunService\\bin\\Korn.AutorunService.exe");
+            var serviceExe = Path.Combine(KornPaths.AutorunService.BinDirectory, "Korn.AutorunService.exe");
 
             ServiceControl.Execute($"create \"Korn.AutorunService\" binpath= \"{serviceExe}\"");
             ServiceControl.Execute($"config \"Korn.AutorunService\" start= auto");

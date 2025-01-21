@@ -1,18 +1,21 @@
 ﻿using Korn.Utils.WinForms;
 
 namespace Korn.Installer.Windows;
-public partial class InstallingStatusWindow : RelocableForm
+partial class StatusWindow : RelocableForm
 {
-    public InstallingStatusWindow()
+    public StatusWindow()
     {
         InitializeComponent();
         EndInitializeComponents();
 
         ControlUtils.SetRoundCorners(this, InterfaceConfiguration.RoundCornerSize);
-        ControlUtils.SetRoundCorners(InstallingLabelBackgroundPanel, InterfaceConfiguration.RoundCornerSize);
+        ControlUtils.SetRoundCorners(TitleLabel, InterfaceConfiguration.RoundCornerSize);
     }
 
     public required string InstallationPath;
+    public required Action<ServiceInstaller> Action;
+
+    public string Title { set => Invoke(() => TitleLabel.Text = value); }
 
     void InstallingStatusWindow_Load(object sender, EventArgs e)
     {
@@ -20,7 +23,7 @@ public partial class InstallingStatusWindow : RelocableForm
         installer.PhaseNotify += phase => Invoke(() => PhaseLabel.Text = phase);
         new Thread(() =>
         {
-            installer.Install();
+            Action(installer);
             Invoke(Close);
         }).Start();
     }

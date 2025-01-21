@@ -1,6 +1,6 @@
 ﻿namespace Korn.Installer.Windows;
 
-partial class InstallingStatusWindow
+partial class StatusWindow
 {
     /// <summary>
     /// Required designer variable.
@@ -28,24 +28,9 @@ partial class InstallingStatusWindow
     /// </summary>
     private void InitializeComponent()
     {
-        InstallingLabel = new Label();
         PhaseLabel = new Label();
-        InstallingLabelBackgroundPanel = new Panel();
-        InstallingLabelBackgroundPanel.SuspendLayout();
+        TitleLabel = new Label();
         SuspendLayout();
-        // 
-        // InstallingLabel
-        // 
-        InstallingLabel.AutoSize = true;
-        InstallingLabel.BackColor = Color.FromArgb(36, 36, 36);
-        InstallingLabel.Font = new Font("Consolas", 10F, FontStyle.Bold);
-        InstallingLabel.ForeColor = Color.FromArgb(210, 210, 210);
-        InstallingLabel.ImageAlign = ContentAlignment.MiddleRight;
-        InstallingLabel.Location = new Point(5, 5);
-        InstallingLabel.Name = "InstallingLabel";
-        InstallingLabel.Size = new Size(96, 17);
-        InstallingLabel.TabIndex = 4;
-        InstallingLabel.Text = "Installing…";
         // 
         // PhaseLabel
         // 
@@ -58,40 +43,40 @@ partial class InstallingStatusWindow
         PhaseLabel.Name = "PhaseLabel";
         PhaseLabel.Size = new Size(396, 17);
         PhaseLabel.TabIndex = 5;
-        PhaseLabel.Text = "NaN";
+        PhaseLabel.Text = "{Phase}";
         PhaseLabel.TextAlign = ContentAlignment.MiddleCenter;
         // 
-        // InstallingLabelBackgroundPanel
+        // TitleLabel
         // 
-        InstallingLabelBackgroundPanel.BackColor = Color.FromArgb(36, 36, 36);
-        InstallingLabelBackgroundPanel.Controls.Add(InstallingLabel);
-        InstallingLabelBackgroundPanel.Location = new Point(151, 4);
-        InstallingLabelBackgroundPanel.Name = "InstallingLabelBackgroundPanel";
-        InstallingLabelBackgroundPanel.Size = new Size(106, 27);
-        InstallingLabelBackgroundPanel.TabIndex = 6;
+        TitleLabel.BackColor = Color.FromArgb(36, 36, 36);
+        TitleLabel.Font = new Font("Consolas", 10F, FontStyle.Bold);
+        TitleLabel.ForeColor = Color.FromArgb(210, 210, 210);
+        TitleLabel.ImageAlign = ContentAlignment.MiddleRight;
+        TitleLabel.Location = new Point(127, 9);
+        TitleLabel.Name = "TitleLabel";
+        TitleLabel.Size = new Size(157, 17);
+        TitleLabel.TabIndex = 4;
+        TitleLabel.Text = "{Title}";
+        TitleLabel.TextAlign = ContentAlignment.TopCenter;
         // 
-        // InstallingStatusWindow
+        // StatusWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 14F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.FromArgb(38, 38, 38);
         ClientSize = new Size(412, 69);
-        Controls.Add(InstallingLabelBackgroundPanel);
+        Controls.Add(TitleLabel);
         Controls.Add(PhaseLabel);
         ForeColor = Color.Silver;
         FormBorderStyle = FormBorderStyle.None;
-        Name = "InstallingStatusWindow";
+        Name = "StatusWindow";
         StartPosition = FormStartPosition.CenterParent;
         Text = "InstallingStatusWindow";
         Load += InstallingStatusWindow_Load;
-        InstallingLabelBackgroundPanel.ResumeLayout(false);
-        InstallingLabelBackgroundPanel.PerformLayout();
         ResumeLayout(false);
     }
 
     #endregion
-
-    private Label InstallingLabel;
     private Label PhaseLabel;
-    private Panel InstallingLabelBackgroundPanel;
+    private Label TitleLabel;
 }

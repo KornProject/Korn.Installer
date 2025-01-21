@@ -40,10 +40,9 @@
         InstallationOptionLabel = new Label();
         KornPathLabel = new Label();
         KornPathValueLabel = new Label();
-        BrowseKornPathButton = new Button();
-        InstallationOptionsSplitterPanel = new Panel();
         InstallButton = new Button();
         SuccessfullyInstalledLabel = new Label();
+        InstallationOptionsSplitterPanel = new Panel();
         ((System.ComponentModel.ISupportInitialize)KornImagePictureBox).BeginInit();
         SuspendLayout();
         // 
@@ -112,7 +111,7 @@
         DescriptionLabel.Font = new Font("Consolas", 10F);
         DescriptionLabel.Location = new Point(150, 45);
         DescriptionLabel.Name = "DescriptionLabel";
-        DescriptionLabel.Size = new Size(432, 204);
+        DescriptionLabel.Size = new Size(432, 153);
         DescriptionLabel.TabIndex = 6;
         DescriptionLabel.Text = resources.GetString("DescriptionLabel.Text");
         // 
@@ -168,7 +167,7 @@
         InstallationOptionLabel.AutoSize = true;
         InstallationOptionLabel.Font = new Font("Consolas", 10F, FontStyle.Bold);
         InstallationOptionLabel.ForeColor = Color.FromArgb(230, 230, 230);
-        InstallationOptionLabel.Location = new Point(12, 267);
+        InstallationOptionLabel.Location = new Point(12, 257);
         InstallationOptionLabel.Name = "InstallationOptionLabel";
         InstallationOptionLabel.Size = new Size(168, 17);
         InstallationOptionLabel.TabIndex = 13;
@@ -179,7 +178,7 @@
         KornPathLabel.AutoSize = true;
         KornPathLabel.Font = new Font("Consolas", 10F);
         KornPathLabel.ForeColor = Color.Gainsboro;
-        KornPathLabel.Location = new Point(21, 287);
+        KornPathLabel.Location = new Point(21, 277);
         KornPathLabel.Name = "KornPathLabel";
         KornPathLabel.Size = new Size(88, 17);
         KornPathLabel.TabIndex = 14;
@@ -191,36 +190,11 @@
         KornPathValueLabel.AutoSize = true;
         KornPathValueLabel.Font = new Font("Consolas", 10F);
         KornPathValueLabel.ForeColor = Color.FromArgb(190, 190, 190);
-        KornPathValueLabel.Location = new Point(104, 287);
+        KornPathValueLabel.Location = new Point(104, 277);
         KornPathValueLabel.Name = "KornPathValueLabel";
         KornPathValueLabel.Size = new Size(176, 17);
         KornPathValueLabel.TabIndex = 15;
         KornPathValueLabel.Text = "C:\\Program Files\\Korn";
-        // 
-        // BrowseKornPathButton
-        // 
-        BrowseKornPathButton.BackColor = Color.FromArgb(40, 40, 40);
-        BrowseKornPathButton.FlatAppearance.BorderSize = 0;
-        BrowseKornPathButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(35, 35, 35);
-        BrowseKornPathButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 45, 45);
-        BrowseKornPathButton.FlatStyle = FlatStyle.Flat;
-        BrowseKornPathButton.Font = new Font("Consolas", 9.5F);
-        BrowseKornPathButton.ForeColor = Color.Silver;
-        BrowseKornPathButton.Location = new Point(24, 309);
-        BrowseKornPathButton.Name = "BrowseKornPathButton";
-        BrowseKornPathButton.Size = new Size(85, 24);
-        BrowseKornPathButton.TabIndex = 16;
-        BrowseKornPathButton.Text = "Browse";
-        BrowseKornPathButton.UseVisualStyleBackColor = false;
-        BrowseKornPathButton.Click += BrowseKornPathButton_Click;
-        // 
-        // InstallationOptionsSplitterPanel
-        // 
-        InstallationOptionsSplitterPanel.BackColor = SystemColors.ActiveBorder;
-        InstallationOptionsSplitterPanel.Location = new Point(16, 282);
-        InstallationOptionsSplitterPanel.Name = "InstallationOptionsSplitterPanel";
-        InstallationOptionsSplitterPanel.Size = new Size(159, 1);
-        InstallationOptionsSplitterPanel.TabIndex = 6;
         // 
         // InstallButton
         // 
@@ -231,7 +205,7 @@
         InstallButton.FlatStyle = FlatStyle.Flat;
         InstallButton.Font = new Font("Consolas", 9.5F);
         InstallButton.ForeColor = Color.Silver;
-        InstallButton.Location = new Point(497, 309);
+        InstallButton.Location = new Point(497, 298);
         InstallButton.Name = "InstallButton";
         InstallButton.Size = new Size(85, 24);
         InstallButton.TabIndex = 17;
@@ -244,22 +218,29 @@
         SuccessfullyInstalledLabel.AutoSize = true;
         SuccessfullyInstalledLabel.Font = new Font("Consolas", 10F);
         SuccessfullyInstalledLabel.ForeColor = Color.Gainsboro;
-        SuccessfullyInstalledLabel.Location = new Point(299, 313);
+        SuccessfullyInstalledLabel.Location = new Point(299, 302);
         SuccessfullyInstalledLabel.Name = "SuccessfullyInstalledLabel";
         SuccessfullyInstalledLabel.Size = new Size(192, 17);
         SuccessfullyInstalledLabel.TabIndex = 18;
         SuccessfullyInstalledLabel.Text = "Successfully installed!";
         SuccessfullyInstalledLabel.Visible = false;
         // 
+        // InstallationOptionsSplitterPanel
+        // 
+        InstallationOptionsSplitterPanel.BackColor = SystemColors.ActiveBorder;
+        InstallationOptionsSplitterPanel.Location = new Point(16, 274);
+        InstallationOptionsSplitterPanel.Name = "InstallationOptionsSplitterPanel";
+        InstallationOptionsSplitterPanel.Size = new Size(159, 1);
+        InstallationOptionsSplitterPanel.TabIndex = 6;
+        // 
         // InstallWindow
         // 
         AutoScaleDimensions = new SizeF(96F, 96F);
         AutoScaleMode = AutoScaleMode.Dpi;
         BackColor = Color.FromArgb(36, 36, 36);
-        ClientSize = new Size(594, 344);
+        ClientSize = new Size(594, 332);
         Controls.Add(SuccessfullyInstalledLabel);
         Controls.Add(InstallButton);
-        Controls.Add(BrowseKornPathButton);
         Controls.Add(InstallationOptionsSplitterPanel);
         Controls.Add(KornPathValueLabel);
         Controls.Add(KornPathLabel);
@@ -299,8 +280,7 @@
     private LinkLabel AuthorGithubLinkLabel;
     private Label InstallationOptionLabel;
     private Label KornPathValueLabel;
-    private Button BrowseKornPathButton;
-    private Panel InstallationOptionsSplitterPanel;
     private Button InstallButton;
     private Label SuccessfullyInstalledLabel;
+    private Panel InstallationOptionsSplitterPanel;
 }

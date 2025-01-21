@@ -15,7 +15,7 @@ static class Assets
     static Image ResolveImage(string path)
     {
         var bytes = resolver.Resolve(path);
-        using var memoryStream = new MemoryStream(bytes);
+        using var memoryStream = new MemoryStream(bytes);   
 
         var image = Image.FromStream(memoryStream);
         return image;

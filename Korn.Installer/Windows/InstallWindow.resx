@@ -125,9 +125,6 @@ for example, Roslyn.
 and is not capable of breaking any VisualStudio
 components.
 
-  There is no need to restart anything after
-installation. Korn will start working immediately 
-after installation.
   If you wish to uninstall Korn, run the installer
 and select the uninstall option.</value>
   </data>
