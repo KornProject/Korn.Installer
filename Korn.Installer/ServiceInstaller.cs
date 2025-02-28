@@ -1,7 +1,7 @@
 ﻿using Korn.Utils.GithubExplorer;
 using Korn.Utils;
 using System.Diagnostics;
-using Korn.Shared;
+using Korn.Interface;
 
 class ServiceInstaller(string path)
 {
@@ -22,7 +22,6 @@ class ServiceInstaller(string path)
         DownloadKornAutorunService();
         InstallAutorunService();
         StartAutorunService();
-        SetupSystemVariables();
 
         void TerminateKorn()
         {
@@ -46,33 +45,19 @@ class ServiceInstaller(string path)
 
         void CreateDirectories()
         {
-            foreach (var directory in KornPaths.AllRequeredDirectories)
-                Directory.CreateDirectory(Path.Combine(path, directory));
+            foreach (var directory in KornDirectory.GetAllDirectories())
+                Directory.CreateDirectory(directory);
             Phase("Created directories");
         }
 
         void DownloadKornService()
-        {
-            var repository = new RepositoryID("YoticKorn", "Korn.Service");
-            var releases = githubClient.GetRepositoryReleases(repository);
-            var latestRelease = releases[0];
-            Phase("Received latest github release");
-
-            var entries = latestRelease.Assets;
-            for (var entryIndex = 0; entryIndex < entries.Length; entryIndex++)
-            {
-                var entry = entries[entryIndex];
-                var bytes = githubClient.DownloadAsset(entry);
-                Phase($"Downloaded {entryIndex + 1}/{entries.Length} entry: {entry.Name}");
-
-                var entryPath = Path.Combine(KornPaths.Service.BinDirectory, entry.Name);
-                File.WriteAllBytes(entryPath, bytes);
-            }
-        }
+            => DownloadFromGithub(new RepositoryID("YoticKorn", "Korn.Service"), Korn.Interface.Service.BinNet8Directory);
 
         void DownloadKornAutorunService()
+            => DownloadFromGithub(new RepositoryID("YoticKorn", "Korn.AutorunService"), Korn.Interface.AutorunService.BinNet472Diretory);
+
+        void DownloadFromGithub(RepositoryID repository, string directoryPath)
         {
-            var repository = new RepositoryID("YoticKorn", "Korn.AutorunService");
             var releases = githubClient.GetRepositoryReleases(repository);
             var latestRelease = releases[0];
             Phase("Received latest github release");
@@ -84,16 +69,14 @@ class ServiceInstaller(string path)
                 var bytes = githubClient.DownloadAsset(entry);
                 Phase($"Downloaded {entryIndex + 1}/{entries.Length} entry: {entry.Name}");
 
-                var entryPath = Path.Combine(KornPaths.AutorunService.BinDirectory, entry.Name);
+                var entryPath = Path.Combine(directoryPath, entry.Name);
                 File.WriteAllBytes(entryPath, bytes);
             }
         }
 
         void InstallAutorunService()
         {
-            var serviceExe = Path.Combine(KornPaths.AutorunService.BinDirectory, "Korn.AutorunService.exe");
-
-            ServiceControl.Execute($"create \"Korn.AutorunService\" binpath= \"{serviceExe}\"");
+            ServiceControl.Execute($"create \"Korn.AutorunService\" binpath= \"{Korn.Interface.AutorunService.ExecutableFile}\"");
             ServiceControl.Execute($"config \"Korn.AutorunService\" start= auto");
         }
 
@@ -102,11 +85,18 @@ class ServiceInstaller(string path)
             ServiceControl.Execute($"start \"Korn.AutorunService\"");
         }
 
-        void SetupSystemVariables()
-        {
-            Service.KornPath = path;
-        }
+        void Phase(string phase) => PhaseNotify?.Invoke(phase);        
+    }
 
-        void Phase(string phase) => PhaseNotify?.Invoke(phase);
+    public static bool IsInstalled
+    {
+        get
+        {
+            foreach (var directory in KornDirectory.GetAllDirectories())
+                if (!Directory.Exists(directory))
+                    return false;
+
+            return true;
+        }
     }
 }

@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Korn.Shared", "..\Korn.Shar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Korn.Shared.Internal", "..\Korn.Shared\Korn.Shared.Internal\Korn.Shared.Internal.csproj", "{498133B4-4D6D-439B-B5DE-3081BF2D816A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Korn.Interface", "..\Korn.Interface\Korn.Interface\Korn.Interface.csproj", "{217671E7-E605-461F-AB3D-C5A0A6DAD0B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -38,6 +40,8 @@ Global
 		{24C3E81F-4917-433D-A940-32CA7CA5FA65}.Debug|x64.Build.0 = Debug|x64
 		{498133B4-4D6D-439B-B5DE-3081BF2D816A}.Debug|x64.ActiveCfg = Debug|x64
 		{498133B4-4D6D-439B-B5DE-3081BF2D816A}.Debug|x64.Build.0 = Debug|x64
+		{217671E7-E605-461F-AB3D-C5A0A6DAD0B0}.Debug|x64.ActiveCfg = Debug|x64
+		{217671E7-E605-461F-AB3D-C5A0A6DAD0B0}.Debug|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,5 +53,6 @@ Global
 		{1D5D76CA-9CC0-419F-9E79-C7058F69CCCA} = {960306CB-B59C-485F-8A49-0C288E319F55}
 		{24C3E81F-4917-433D-A940-32CA7CA5FA65} = {960306CB-B59C-485F-8A49-0C288E319F55}
 		{498133B4-4D6D-439B-B5DE-3081BF2D816A} = {960306CB-B59C-485F-8A49-0C288E319F55}
+		{217671E7-E605-461F-AB3D-C5A0A6DAD0B0} = {960306CB-B59C-485F-8A49-0C288E319F55}
 	EndGlobalSection
 EndGlobal
