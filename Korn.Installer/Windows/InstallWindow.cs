@@ -74,7 +74,6 @@ public partial class InstallWindow : RelocableForm
             InstallationPath = lastBrowsedKornPath,
             Action = installer => installer.Install()
         };
-        installingStatusWindow.Title = "Installing…";
         installingStatusWindow.ShowDialog();
         InstallButton.Enabled = true;
 

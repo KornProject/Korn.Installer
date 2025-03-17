@@ -19,6 +19,7 @@ partial class StatusWindow : RelocableForm
 
     void InstallingStatusWindow_Load(object sender, EventArgs e)
     {
+        Title = "Installing…";
         var installer = new ServiceInstaller(InstallationPath);
         installer.PhaseNotify += phase => Invoke(() => PhaseLabel.Text = phase);
         new Thread(() =>

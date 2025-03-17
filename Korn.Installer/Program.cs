@@ -1,3 +1,5 @@
+using Korn.Installer.Core;
+
 internal class Program
 {
     [STAThread]
@@ -12,7 +14,7 @@ internal class Program
 
     Form SelectWindow()
     {
-        if (ServiceInstaller.IsInstalled)
+        if (InstallerCore.IsInstalled)
             return new ChooseActionWindow();
         else return new InstallWindow();
     }
