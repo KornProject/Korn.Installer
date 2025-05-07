@@ -5,40 +5,42 @@ using Korn.Utils;
 
 class ServiceInstaller(string path)
 {
+    ServiceControl service = new ServiceControl("Korn.ServiceHub");
+
     public delegate void InstallPhaseDelegate(string phase);
     public event InstallPhaseDelegate? PhaseNotify;
 
     public void Install()
     {
-        Phase("Initialized installer");
+        Phase("initialized installer");
 
         TerminateKorn();
 
         var githubClient = new GithubClient();
-        Phase("Initialized github client");
+        Phase("initialized github client");
 
         DeleteDirectories();
         CreateDirectories();
         SetupComponenets();
-        InstallAutorunService();
+        InstallServiceHub();
         StartAutorunService();
 
         void TerminateKorn()
         {
-            var kornProcesses = Process.GetProcessesByName("Korn.Service");
+            var kornProcesses = Korn.Interface.Services.Processes.SelectMany(Process.GetProcessesByName);
             foreach (var process in kornProcesses)
             {
                 process.Kill();
-                Phase($"Terminated korn service process with pid {process.Id}");
+                Phase($"terminated korn service process with pid {process.Id}");
             }
 
-            ServiceControl.Execute($"stop \"Korn.AutorunService\"");
-            ServiceControl.Execute($"delete \"Korn.AutorunService\"");
+            service.Stop();
+            service.Delete();
 
             if (Directory.Exists(path))
             {
                 Directory.Delete(path, true);
-                Phase($"Deleted existed korn directory");
+                Phase($"deleted existed korn directory");
             }
             Directory.CreateDirectory(path);
         }
@@ -46,45 +48,35 @@ class ServiceInstaller(string path)
         void DeleteDirectories()
         {
             InstallerCore.DeleteDirectories();
-            Phase("Deleted directories");
+            Phase("deleted directories");
         }
 
         void CreateDirectories()
         {
             InstallerCore.CreateDirectories();
-            Phase("Created directories");
+            Phase("created directories");
         }        
 
         void SetupComponenets()
         {
-            Phase("Installing service");
-            InstallerCore.Service.Install();
-            Phase("Installed service");
-
-            Phase("Installing autorun service");
-            InstallerCore.AutorunService.Install();
-            Phase("Installed autorun service");
-
-            Phase("Installing libraries");
-            InstallerCore.Libraries.Install();
-            Phase("Installed libraries");
-
-            Phase("Installing bootstrapper");
-            InstallerCore.Bootstrapper.Install();
-            Phase("Installed bootstrapper");
+            Phase("installing components");
+            var trace = new InstallTrace();
+            trace.Notify += Phase;
+            InstallerCore.Install(trace);
         }
 
-        void InstallAutorunService()
+        void InstallServiceHub()
         {
-            ServiceControl.Execute($"stop \"Korn.AutorunService\"");
-            ServiceControl.Execute($"delete \"Korn.AutorunService\"");
-            ServiceControl.Execute($"create \"Korn.AutorunService\" binpath= \"{Korn.Interface.AutorunService.ExecutableFile}\"");
-            ServiceControl.Execute($"config \"Korn.AutorunService\" start= auto");
+            Phase("installing windows service");
+            service.Stop();
+            service.Delete();
+            service.Create(Korn.Interface.ServiceHub.ExecutableFile);
+            service.Config("auto");
         }
 
         void StartAutorunService()
         {
-            ServiceControl.Execute($"start \"Korn.AutorunService\"");
+            service.Start();
         }
 
         void Phase(string phase) => PhaseNotify?.Invoke(phase);        

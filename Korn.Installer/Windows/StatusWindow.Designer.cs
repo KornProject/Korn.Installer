@@ -39,9 +39,9 @@ partial class StatusWindow
         PhaseLabel.Font = new Font("Consolas", 10F);
         PhaseLabel.ForeColor = Color.FromArgb(210, 210, 210);
         PhaseLabel.ImageAlign = ContentAlignment.MiddleRight;
-        PhaseLabel.Location = new Point(7, 41);
+        PhaseLabel.Location = new Point(12, 43);
         PhaseLabel.Name = "PhaseLabel";
-        PhaseLabel.Size = new Size(396, 17);
+        PhaseLabel.Size = new Size(421, 17);
         PhaseLabel.TabIndex = 5;
         PhaseLabel.Text = "{Phase}";
         PhaseLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -52,7 +52,7 @@ partial class StatusWindow
         TitleLabel.Font = new Font("Consolas", 10F, FontStyle.Bold);
         TitleLabel.ForeColor = Color.FromArgb(210, 210, 210);
         TitleLabel.ImageAlign = ContentAlignment.MiddleRight;
-        TitleLabel.Location = new Point(127, 9);
+        TitleLabel.Location = new Point(145, 9);
         TitleLabel.Name = "TitleLabel";
         TitleLabel.Size = new Size(157, 17);
         TitleLabel.TabIndex = 4;
@@ -64,7 +64,7 @@ partial class StatusWindow
         AutoScaleDimensions = new SizeF(7F, 14F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.FromArgb(38, 38, 38);
-        ClientSize = new Size(412, 69);
+        ClientSize = new Size(445, 69);
         Controls.Add(TitleLabel);
         Controls.Add(PhaseLabel);
         ForeColor = Color.Silver;
