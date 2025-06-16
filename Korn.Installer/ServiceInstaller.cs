@@ -1,6 +1,5 @@
 ﻿using Korn.Utils.GithubExplorer;
 using Korn.Installer.Core;
-using System.Diagnostics;
 using Korn.Utils;
 
 class ServiceInstaller(string path)
@@ -27,11 +26,11 @@ class ServiceInstaller(string path)
 
         void TerminateKorn()
         {
-            var kornProcesses = Korn.Interface.Services.Processes.SelectMany(Process.GetProcessesByName);
+            var kornProcesses = Korn.Interface.Services.Processes.SelectMany(Process.Processes.GetProcessesByName);
             foreach (var process in kornProcesses)
             {
                 process.Kill();
-                Phase($"terminated korn service process with pid {process.Id}");
+                Phase($"terminated korn service process with pid {process.ID}");
             }
 
             service.Stop();
