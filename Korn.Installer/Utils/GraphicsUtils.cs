@@ -1,4 +1,4 @@
-﻿using Korn.Utils;
+﻿using Korn.Modules.WinApi;
 
 static class GraphicsUtils
 {
